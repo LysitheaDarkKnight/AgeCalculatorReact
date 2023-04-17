@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap");
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: hsl(0, 0%, 86%);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.4s ease;
+}
+
+img {
+  display: block;
+}
+
+input {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  appearance: textfield;
+  font-size: 32px;
+}
+
+input, label {
+  display: block;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+main .container {
+  width: min(38rem, 90%);
+  background-color: hsl(0, 0%, 100%);
+  padding: 3rem 1.5rem;
+  border-radius: 1.5rem;
+  border-bottom-right-radius: 8rem;
+}
+main .container form .row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: stretch;
+  gap: 1rem;
+}
+main .container form .row .input-form label {
+  text-transform: uppercase;
+  color: hsl(0, 1%, 44%);
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  margin-bottom: 0.3rem;
+}
+main .container form .row .input-form input {
+  width: 100%;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.75rem;
+  border: 1px solid hsl(0, 0%, 86%);
+}
+main .container form .row .input-form input:focus, main .container form .row .input-form input :hover {
+  border: 1px solid hsl(259, 100%, 65%);
+  outline: 0;
+}
+main .container .border-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+main .container .border-container hr {
+  width: 100%;
+  border: 1px solid hsl(0, 0%, 94%);
+}
+main .container .border-container input {
+  background-color: hsl(259, 100%, 65%);
+  padding: 1.1rem;
+  border-radius: 50%;
+  width: 4rem;
+}
+main .container .border-container input:hover, main .container .border-container input:focus {
+  background-color: hsl(0, 0%, 8%);
+}
+main .container .age-display__number {
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 800;
+  color: hsl(0, 0%, 8%);
+  line-height: 1.1;
+}
+main .container .age-display__number span {
+  color: hsl(259, 100%, 65%);
+}
+
+@media only screen and (min-width: 57.5rem) {
+  main .container {
+    padding: 3rem;
+  }
+  main .container form .row {
+    gap: 2rem;
+  }
+  main .container form .row .input-form input {
+    width: 7rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0.75rem;
+    border: 1px solid hsl(0, 0%, 86%);
+  }
+  main .container form .row .input-form input:focus, main .container form .row .input-form input :hover {
+    border: 1px solid hsl(259, 100%, 65%);
+    outline: 0;
+  }
+  main .container .border-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    flex: 1;
+  }
+  main .container .border-container hr {
+    width: 100%;
+    border: 1px solid hsl(0, 0%, 94%);
+  }
+  main .container .border-container hr:nth-of-type(2) {
+    display: none;
+  }
+  main .container .border-container input {
+    background-color: hsl(259, 100%, 65%);
+    padding: 1.1rem;
+    border-radius: 50%;
+    width: 4rem;
+  }
+  main .container .age-display__number {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+  }
+  main .container .age-display__number input, main .container .age-display__number label {
+    font-size: 5rem;
+    font-style: italic;
+    font-weight: 800;
+  }
+  main .container .age-display__number input {
+    border: none;
+    width: 5rem;
+    color: hsl(259, 100%, 65%);
+    margin-right: 1rem;
+  }
+}/*# sourceMappingURL=style.css.map */

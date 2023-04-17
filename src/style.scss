@@ -1,0 +1,223 @@
+@use 'colors' as *;
+@use 'functions' as *;
+@use 'fonts' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap');
+
+
+// UNIVERSAL //
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.4s ease;
+}
+
+body{
+  font-family: $poppins;
+  background-color: $Light-grey;
+  
+}
+
+img{
+    display: block;
+}
+
+input{
+    -moz-appearance: textfield; 
+    -webkit-appearance: textfield; 
+    appearance: textfield;
+    font-size: 32px;
+}
+
+input, label{
+  display: block;
+}
+
+.error{
+  color: $Light-red;
+
+}
+
+main {
+  @include set-flex($justify-content: center, $align-items: center);
+  height: 100vh;
+  .container{
+    width: min(38rem, 90%);
+    background-color: $White;
+    padding: 3rem 1.5rem;
+    border-radius: 1.5rem;
+    border-bottom-right-radius: 8rem;
+    form{
+
+      .row{
+        @include set-flex;
+        gap: 1rem;
+
+        .input-form{
+          color: $Smokey-grey;
+          label{
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            margin-bottom: 0.3rem;
+          }
+
+          input{
+            width: 100%;
+            border-radius: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 0.75rem;
+            border: 1px solid $Light-grey;
+            &:focus, :hover{
+              border: 1px solid $Purple;
+              outline: 0;
+            }
+          }
+
+          .message{
+            font-size: 0.62rem;
+            font-style: italic;
+            margin-top: 0.25rem;
+          }
+
+        }
+      }
+    }
+
+    .border-container{
+      @include set-flex($justify-content: center, $align-items: center);
+      padding-top: 2rem;
+      padding-bottom: 1rem;
+      
+        // .border {
+        //   border-top: 2px solid $Off-white;
+        //   flex-grow: 1; /* This will make the border fill the remaining space */
+        // }
+
+        hr {
+          width: 100%;
+          border: 1px solid $Off-white;
+          // margin-top: 20px;
+          // margin-bottom: 20px;
+        }
+        
+        input {
+          background-color: $Purple;
+          padding: 1.1rem;
+          border-radius: 50%;
+          width: 4rem;
+          &:hover, &:focus{
+            background-color: $Off-black;
+          }
+        }
+    }
+
+    .age-display{
+      &__number{
+        font-size: 1.5rem;
+        font-style: italic;
+        font-weight: 800;
+        color: $Off-black;
+        line-height: 1.1;
+        span{
+          color: $Purple;
+        }
+      }
+    }
+  }
+}
+
+@include mq(57.5rem){
+  main {
+    .container{
+      padding: 3rem;
+      form{
+        .row{
+          gap: 2rem;
+  
+          .input-form{
+  
+            // label{
+            //   text-transform: uppercase;
+            //   color: $Smokey-grey;
+            //   font-size: 0.7rem;
+            //   letter-spacing: 3px;
+            //   margin-bottom: 0.3rem;
+            // }
+  
+            input{
+              width: 7rem;
+              border-radius: 0.5rem;
+              font-size: 1.2rem;
+              font-weight: 700;
+              padding: 0.75rem;
+              border: 1px solid $Light-grey;
+              &:focus, :hover{
+                border: 1px solid $Purple;
+                outline: 0;
+              }
+            }
+  
+          }
+        }
+      }
+  
+      .border-container{
+        @include set-flex($justify-content: center, $align-items: center);
+        flex-direction: row;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        flex: 1;
+      
+        hr {
+          width: 100%;
+          border: 1px solid $Off-white;
+          // margin-top: 20px;
+          // margin-bottom: 20px;
+          &:nth-of-type(2){
+            display: none;
+          }
+        }
+      
+        input {
+          background-color: $Purple;
+          padding: 1.1rem;
+          border-radius: 50%;
+          width: 4rem;
+        }
+
+        
+      }
+  
+      .age-display{
+        &__number{
+          @include set-flex($align-items: center);
+          input, label{
+            font-size: 5rem;
+            font-style: italic;
+            font-weight: 800;
+          }
+  
+          input{
+            border: none;
+            width: 5rem;
+            color: $Purple;
+            margin-right: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+  
+//   .border {
+//     border-top: 1px solid black;
+//     flex-grow: 1; /* This will make the border fill the remaining space */
+//   }
+  
+//   button {
+//     margin: 0 10px;
+//   }
