@@ -10,8 +10,6 @@ function App() {
       <div className="container">
         <Form>
         </Form>
-        <AgeDisplay>
-        </AgeDisplay>
       </div>
     </main>
   );
