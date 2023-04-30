@@ -4,50 +4,18 @@ import { useState, useRef } from "react"
 import moment from 'moment';
 
 
-function Form() {
-  // const [validDay, setValidDay] = useState(false);
-  // const [validMonth, setValidMonth] = useState(false);
-  // const [validYear, setValidYear] = useState(false);
-
-  const [day, setDay] = useState('')
-  const [month, setMonth] = useState('')
-  const [year, setYear] = useState('')
-
+function Form({day, setDay, month, setMonth, year, setYear, setShowAge}) {
   const [messageDay, setMessageDay] = useState('')
   const [messageMonth, setMessageMonth] = useState('')
   const [messageYear, setMessageYear] = useState('')
 
-  const [yearDisplay, setYearDisplay] = useState('--')
-  const [monthDisplay, setMonthDisplay] = useState('--')
-  const [dayDisplay, setDayDisplay] = useState('--')
-
-  const dateArray = useState([]);
-
-//   function setError (element, msg) {
-//     const inputControl = element.nextElementSibling.nextElementSibling;
-//     inputControl.previousElementSibling.style.display = 'block';
-//     inputControl.previousElementSibling.previousElementSibling.style.borderColor = 'hsl(0, 100%, 74%)';
-//     inputControl.innerText = msg
-//     inputControl.classList.add('error');
-//     inputControl.classList.remove('success')
-// }
-
-// function setError (element, msg) {
-//   const inputControl = element
-//   console.log(inputControl)
-// }
-
-
-// const setError = (e) => {
-//   console.log(12)
-// }
-
+  const [yearDisplay, setYearDisplay] = useState('')
+  const [monthDisplay, setMonthDisplay] = useState('')
+  const [dayDisplay, setDayDisplay] = useState('')
 
 const handleNumberChange = (e) => {
 
   const idInput = e.target.id.slice(0,-6)
-
-
 
   if (idInput === 'day'){
     setDay(e.target.value)
@@ -60,81 +28,37 @@ const handleNumberChange = (e) => {
    
 }
 
-const handleNumberInput = (e) => {
-  e.target.value = e.target.value.replace(/[^0-9]/g, '');
-
-  // if(day === 0 || day === ''){
-  //   setMessageDay('This field is required')
-  // } else if(day > 31) {
-  //   setMessageDay('Must be a valid day')
-  // } else {
-  //   setMessageDay('')
-  // }
-
-  // if(month === 0 || month === ''){
-  //   setMessageMonth('This field is required')
-  // } else if(month > 12) {
-  //   setMessageMonth('Must be a valid month')
-  // } else {
-  //   setMessageMonth('')
-  // }
-
-
-  // if(year === 0 || year === ''){
-  //   setMessageYear('This field is required')
-  // } else if(moment(date, 'YYYY-M-D').isAfter(moment())) {
-  //   setMessageYear('Must be in the past')
-  // } else {
-  //   setMessageYear('')
-  //   setValidYear(true)
-  // }
-  
-
+const handleYearChange = (e) => {
+  setYearDisplay(e.target.value) 
+}
+const handleMonthChange = (e) => {
+  setMonthDisplay(e.target.value) 
+}
+const handleDayChange = (e) => {
+  setDayDisplay(e.target.value) 
 }
 
-const handleSubmit = (e) => {
-  e.preventDefault()
-
-  // const date = `${dateArray.current[2]}-${dateArray.current[1]}-${dateArray.current[0]}`
-  const date = `${year}-${month}-${day}`
-
-  console.log(date)
-  console.log(moment().format('YYYY-M-D'))
-  console.log(moment(date, 'YYYY-M-D').isAfter(moment()))
 
 
+const handleNumberInput = (e) => {
+  e.target.value = e.target.value.replace(/[^0-9]/g, '');
+}
 
-  // if(day === 0 || day === ''){
-  //   setMessageDay('This field is required')
-  // } else if(day > 31) {
-  //   setMessageDay('Must be a valid day')
-  // } else {
-  //   setMessageDay('')
-  // }
-
-  // if(month === 0 || month === ''){
-  //   setMessageMonth('This field is required')
-  // } else if(month > 12) {
-  //   setMessageMonth('Must be a valid month')
-  // } else {
-  //   setMessageMonth('')
-  // }
-
-
-  // if(year === 0 || year === ''){
-  //   setMessageYear('This field is required')
-  // } else if(moment(date, 'YYYY-M-D').isAfter(moment())) {
-  //   setMessageYear('Must be in the past')
-  // } else {
-  //   setMessageYear('')
-  //   // setValidYear(true)
-  // }
+const isEmpty = () => {
   if(day === ''){
     setMessageDay('This field is required')
   }else if (month === ''){  
     setMessageMonth('This field is required')
   }else if (year === ''){  
     setMessageYear('This field is required')
+  }else{
+    return true
+  }
+  return false
+}
+
+const calculateAge = (date) => {
+  if(!isEmpty){
   }else if(!moment(date, 'YYYY-M-D', true).isValid()) {
     setMessageYear('Must be a valid date')
   }else if(moment(date, 'YYYY-M-D').isAfter(moment())){
@@ -149,42 +73,39 @@ const handleSubmit = (e) => {
     let tyear = moment().format('YYYY')
 
     if (tday < day) {
-      setDayDisplay(tday - day + 30);
+      setDay(tday - day + 30);
       tmonth = tmonth - 1;
     } else {
-      setDayDisplay(tday - day)
+      setDay(tday - day)
     }
   
     if (tmonth < month) {
-      setMonthDisplay(tmonth - month + 12);
+      setMonth(tmonth - month + 12);
       tyear = tyear - 1;
     } else {
-      setMonthDisplay(tmonth - month);
+      setMonth(tmonth - month);
     }
   
-    setYearDisplay(tyear - year);
+    setYear(tyear - year);
   }
+}
 
-  // if(day === '' || month === '' || year === ''){
-  //   setMessageDay('This field is required')
-  //   setMessageMonth('This field is required')
-  //   setMessageYear('This field is required')
-  // }else{  
-  //   console.log(123)
-  // }
+const handleSubmit = (e) => {
+  e.preventDefault()
+  const date = `${year}-${month}-${day}`
 
-    // } else if(moment(date, 'YYYY-M-D', true).isValid() === false) {
-  //   setMessageMonth('')
-  //   setMessageYear('')
-  //   setMessageDay("Must be a valid date")
+  // display date in console
+  console.log(date)
+  console.log(moment().format('YYYY-M-D'))
+  console.log(moment(date, 'YYYY-M-D').isAfter(moment()))
 
-  // moment(date, 'D-M-YYYY', true).isValid() === false ? setMessageDay("Must be a valid date") : console.log(1)
+  // Calculate
+  calculateAge(date)
 
-
-  // if (messageDay === '' && messageMonth === '' && messageYear === '') {
-  //   console.log(12)
-  // }
-
+  // Set flag for display result
+  if(isEmpty()){
+    setShowAge(true)
+  }
 }
 
   return (
@@ -194,22 +115,22 @@ const handleSubmit = (e) => {
         <div className="input-form">
             <label htmlFor="day-input">day</label>
             <input onChange={handleNumberChange} 
-            onInput={handleNumberInput} 
-            type="text" className="date-input" id="day-input" name="day-input" placeholder="DD" maxLength={2} value={day}/>
+            onInput={handleDayChange} 
+            type="text" className="date-input" id="day-input" name="day-input" placeholder="DD" maxLength={2} value={dayDisplay}/>
             {messageDay && <div className='message error'>{messageDay}</div>}
         </div>
         <div className="input-form">
             <label htmlFor="month-input">month</label>
             <input onChange={handleNumberChange} 
-            onInput={handleNumberInput} 
-            type="text" className="date-input" id="month-input" name="month-input" placeholder="MM" maxLength={2}  value={month}/>
+            onInput={handleMonthChange} 
+            type="text" className="date-input" id="month-input" name="month-input" placeholder="MM" maxLength={2}  value={monthDisplay}/>
             {messageMonth && <div className='message error'>{messageMonth}</div>}
         </div>
         <div className="input-form">
             <label htmlFor="year-input">year</label>
             <input onChange={handleNumberChange} 
-            onInput={handleNumberInput} 
-            type="text" className="date-input" id="year-input" name="year-input" placeholder="YYYY" maxLength={4}  value={year}/>
+            onInput={handleYearChange} 
+            type="text" className="date-input" id="year-input" name="year-input" placeholder="YYYY" maxLength={4}  value={yearDisplay}/>
             {messageYear && <div className='message error'>{messageYear}</div>}
         </div>
       </div>
@@ -221,25 +142,7 @@ const handleSubmit = (e) => {
             <hr/>
         </div>
     </form>
-      <div className="age-display">
-       <div className="age-display__number">
-           {/* <input type="text" id="age-years__display" name="age-years__display" value={yearDisplay} disabled/>
-           <label htmlFor="age-years__display">years</label> */}
-           <h1 id="age-years"><span id="age-years__calculate">{yearDisplay}</span> years</h1>
-
-       </div>
-       <div className="age-display__number">
-           {/* <input type="text" id="age-months__display" name="age-months__display" value={monthDisplay} disabled/>
-           <label htmlFor="age-months__display">months</label> */}
-           <h1 id="age-months"><span id="age-months__calculate">{monthDisplay}</span> months</h1>
-       </div>
-       <div className="age-display__number">
-           {/* <input type="text" id="age-days__display" name="age-days__display" value={dayDisplay} disabled/>
-           <label htmlFor="age-days__display">days</label> */}
-           <h1 id="age-days"><span id="age-days__calculate">{dayDisplay}</span> days</h1>
-       </div>
-
-   </div>
+      
    </>
   )
 }
